@@ -29,7 +29,7 @@ parser.add_argument(
     dest="geometry",
     choices=["1sided", "sym", "asym"],
     help="Geometry",
-    default="1sided",
+    default="asym",
 )
 options = parser.parse_args()
 geom = options.geometry
@@ -683,7 +683,7 @@ while t < t_end:
         sed_solver.parameters["newton_solver"]["maximum_iterations"] = 10
         sed_solver.parameters["newton_solver"]["report"] = True
         sed_solver.parameters["newton_solver"]["relaxation_parameter"] = 0.7
-        sed_solver.parameters['newton_solver']['krylov_solver']['relative_tolerance'] = 1e-3
+        #sed_solver.parameters['newton_solver']['krylov_solver']['relative_tolerance'] = 1e-3
 
         sed_solver.solve()
 
@@ -700,7 +700,7 @@ while t < t_end:
         mass_solver.parameters["snes_solver"]["linear_solver"] = "gmres"
         mass_solver.parameters["snes_solver"]["maximum_iterations"] = 10
         mass_solver.parameters["snes_solver"]["report"] = True
-        mass_solver.parameters['snes_solver']['krylov_solver']['relative_tolerance'] = 1e-3
+        #mass_solver.parameters['snes_solver']['krylov_solver']['relative_tolerance'] = 1e-3
         mass_solver.solve()
 
         assigner_inv_s.assign([B0, Qs0, h_s0, h_s_0, h_eff0], T)
